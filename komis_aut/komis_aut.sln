@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "komis_aut", "komis_aut\komis_aut.csproj", "{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05438285-5E2B-466A-BB07-008A909661FA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,213 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\controller\\ofertacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\controller\\ofertacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\modele\\transakcja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\modele\\transakcja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\controller\\uzytkownikcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\controller\\uzytkownikcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\modele\\uzytkownik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\modele\\uzytkownik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\controller\\transakcjecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\controller\\transakcjecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\modele\\zdjecie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\modele\\zdjecie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\modele\\oferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\modele\\oferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\modele\\pojazd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\modele\\pojazd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|c:\\users\\jakub\\documents\\k-j\\komis_aut (1)\\komis_aut\\komis_aut\\migrations\\20250513162801_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B32F0D50-B9E4-4046-BE05-E253AF00CD9B}|komis_aut\\komis_aut.csproj|solutionrelative:komis_aut\\migrations\\20250513162801_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OfertaController.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Controller\\OfertaController.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Controller\\OfertaController.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Controller\\OfertaController.cs",
+              "RelativeToolTip": "komis_aut\\Controller\\OfertaController.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwDEAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:31:37.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\appsettings.json",
+              "RelativeDocumentMoniker": "komis_aut\\appsettings.json",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\appsettings.json",
+              "RelativeToolTip": "komis_aut\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-13T16:29:06.101Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TransakcjeController.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Controller\\TransakcjeController.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Controller\\TransakcjeController.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Controller\\TransakcjeController.cs",
+              "RelativeToolTip": "komis_aut\\Controller\\TransakcjeController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:28:23.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UzytkownikController.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Controller\\UzytkownikController.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Controller\\UzytkownikController.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Controller\\UzytkownikController.cs",
+              "RelativeToolTip": "komis_aut\\Controller\\UzytkownikController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:28:23.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "20250513162801_init.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Migrations\\20250513162801_init.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Migrations\\20250513162801_init.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Migrations\\20250513162801_init.cs",
+              "RelativeToolTip": "komis_aut\\Migrations\\20250513162801_init.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:28:01.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "komis_aut\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:25:40.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Zdjecie.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Zdjecie.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Modele\\Zdjecie.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Zdjecie.cs",
+              "RelativeToolTip": "komis_aut\\Modele\\Zdjecie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:21:17.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Uzytkownik.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Uzytkownik.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Modele\\Uzytkownik.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Uzytkownik.cs",
+              "RelativeToolTip": "komis_aut\\Modele\\Uzytkownik.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:19:51.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Transakcja.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Transakcja.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Modele\\Transakcja.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Transakcja.cs",
+              "RelativeToolTip": "komis_aut\\Modele\\Transakcja.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:18:48.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Pojazd.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Pojazd.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Modele\\Pojazd.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Pojazd.cs",
+              "RelativeToolTip": "komis_aut\\Modele\\Pojazd.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:17:17.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Oferta.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Oferta.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Modele\\Oferta.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Modele\\Oferta.cs",
+              "RelativeToolTip": "komis_aut\\Modele\\Oferta.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:15:45.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Program.cs",
+              "RelativeDocumentMoniker": "komis_aut\\Program.cs",
+              "ToolTip": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut (1)\\komis_aut\\komis_aut\\Program.cs",
+              "RelativeToolTip": "komis_aut\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-13T16:00:00.067Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
