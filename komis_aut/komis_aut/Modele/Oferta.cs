@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace komis_aut.Modele
 {
+[Table("oferty")]
     public class Oferta
     {
         [Key]
@@ -26,11 +27,11 @@ namespace komis_aut.Modele
 
         [ForeignKey("PojazdId")]
 
-        public Pojazd Pojazd { get; set; }
+        public Pojazd? Pojazd { get; set; }
 
 
         [ForeignKey("KupujacyId")]
-        public Uzytkownik Kupujacy { get; set; }
+        public Uzytkownik? Kupujacy { get; set; }
     }
 
 }

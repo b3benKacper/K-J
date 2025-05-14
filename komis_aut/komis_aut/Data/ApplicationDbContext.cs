@@ -20,6 +20,12 @@ namespace komis_aut.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Uzytkownik>().ToTable("uzytkownicy");
+            modelBuilder.Entity<Oferta>().ToTable("oferty");
+            modelBuilder.Entity<Zdjecie>().ToTable("zdjecia");
+            modelBuilder.Entity<Pojazd>().ToTable("pojazdy");
+            modelBuilder.Entity<Transakcja>().ToTable("transakcje");
+
             modelBuilder.Entity<Transakcja>()
                 .HasOne(t => t.Kupujacy)
                 .WithMany()

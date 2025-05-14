@@ -6,7 +6,7 @@ const OfertaList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/oferta')
+    axios.get('http://localhost:5024/api/oferta')
       .then(res => {
         setOferty(res.data);
         setLoading(false);
@@ -20,15 +20,32 @@ const OfertaList = () => {
   if (loading) return <p>⏳ Ładowanie ofert...</p>;
 
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h2>📋 Lista ofert</h2>
-      <ul>
-        {oferty.map(oferta => (
-          <li key={oferta.ofertaId}>
-            🚗 <strong>{oferta.tytul}</strong> - {oferta.cena} zł
-          </li>
-        ))}
-      </ul>
+      <table border="1" cellPadding="10" style={{ borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th>Oferta ID</th>
+            <th>Pojazd ID</th>
+            <th>Kupujący ID</th>
+            <th>Kwota</th>
+            <th>Status</th>
+            <th>Data założenia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {oferty.map(oferta => (
+            <tr key={oferta.ofertaId}>
+              <td>{oferta.ofertaId}</td>
+              <td>{oferta.pojazdId}</td>
+              <td>{oferta.kupujacyId}</td>
+              <td>{oferta.kwota} zł</td>
+              <td>{oferta.status}</td>
+              <td>{new Date(oferta.dataZalozenia).toLocaleDateString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
