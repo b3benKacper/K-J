@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("komis_aut")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a038bf876219ec89a6b42a728e7f62aec73f5eb1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3de8d4a4de3c36215b906a345d8d56d94052b96")]
 [assembly: System.Reflection.AssemblyProductAttribute("komis_aut")]
 [assembly: System.Reflection.AssemblyTitleAttribute("komis_aut")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
