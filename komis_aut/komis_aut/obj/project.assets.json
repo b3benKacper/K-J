@@ -2321,23 +2321,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kacpl\\.nuget\\packages\\": {},
+    "C:\\Users\\jakub\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Z:\\Website\\github\\K-J\\komis_aut\\komis_aut\\komis_aut.csproj",
+      "projectUniqueName": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut\\komis_aut\\komis_aut.csproj",
       "projectName": "komis_aut",
-      "projectPath": "Z:\\Website\\github\\K-J\\komis_aut\\komis_aut\\komis_aut.csproj",
-      "packagesPath": "C:\\Users\\kacpl\\.nuget\\packages\\",
-      "outputPath": "Z:\\Website\\github\\K-J\\komis_aut\\komis_aut\\obj\\",
+      "projectPath": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut\\komis_aut\\komis_aut.csproj",
+      "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jakub\\Documents\\K-J\\komis_aut\\komis_aut\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kacpl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jakub\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2346,7 +2346,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2405,7 +2404,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
