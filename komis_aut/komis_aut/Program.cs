@@ -1,58 +1,42 @@
-// using komis_aut.Data;
-// using Microsoft.EntityFrameworkCore;
-
-
-// var builder = WebApplication.CreateBuilder(args);
-
-// // Add services to the container.
-// builder.Services.AddRazorPages();
-
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// var app = builder.Build();
-
-// // Configure the HTTP request pipeline.
-// if (!app.Environment.IsDevelopment())
-// {
-//     app.UseExceptionHandler("/Error");
-//     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//     app.UseHsts();
-// }
-
-// app.UseHttpsRedirection();
-// app.UseStaticFiles();
-
-// app.UseRouting();
-
-// app.UseAuthorization();
-
-// app.MapRazorPages();
-
-// app.Run();
-
-
-
-
-
 using komis_aut.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
-builder.Services.AddControllers(); // ✅ obsługa kontrolerów API
+// ✅ Dodaj kontrolery API + Razor Pages
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
+// ✅ Dodaj bazę danych
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ✅ Dodaj CORS dla Reacta
+// ✅ Konfiguracja JWT
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
+// ✅ CORS – dla np. Reacta
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // adres frontendu React
+        policy.WithOrigins("http://localhost:3000") // <--- podaj tu swój frontend
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -60,7 +44,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// ✅ Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -72,14 +56,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseCors("AllowReact"); // ✅ CORS musi być PRZED autoryzacją
+app.UseCors("AllowReact");     // ✅ najpierw CORS
+app.UseAuthentication();       // ✅ potem JWT auth
+app.UseAuthorization();        // ✅ a potem autoryzacja
 
-app.UseAuthorization();
-
-// ✅ Obsłuż API endpointy z kontrolerów
-app.MapControllers();
-
-// Razor Pages jeśli nadal używasz (można usunąć jeśli niepotrzebne)
-app.MapRazorPages();
+app.MapControllers();          // ✅ kontrolery API
+app.MapRazorPages();           // Razor Pages (opcjonalnie)
 
 app.Run();
