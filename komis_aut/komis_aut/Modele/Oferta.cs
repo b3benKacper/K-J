@@ -19,7 +19,7 @@ namespace komis_aut.Modele
         public decimal Kwota { get; set; }
 
         [Required]
-        public DateTime DataZalozenia { get; set; }
+        public DateOnly? DataZalozenia { get; set; }
 
         [Required]
         public string Status { get; set; }

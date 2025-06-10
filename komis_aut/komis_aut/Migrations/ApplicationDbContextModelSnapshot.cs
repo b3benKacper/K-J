@@ -30,8 +30,9 @@ namespace komis_aut.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("OfertaId"));
 
-                    b.Property<DateTime>("DataZalozenia")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly?>("DataZalozenia")
+                        .IsRequired()
+                        .HasColumnType("date");
 
                     b.Property<int>("KupujacyId")
                         .HasColumnType("integer");
@@ -52,7 +53,7 @@ namespace komis_aut.Migrations
 
                     b.HasIndex("PojazdId");
 
-                    b.ToTable("Oferty");
+                    b.ToTable("oferty", (string)null);
                 });
 
             modelBuilder.Entity("komis_aut.Modele.Pojazd", b =>
@@ -66,8 +67,9 @@ namespace komis_aut.Migrations
                     b.Property<decimal>("Cena")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime>("DataDodania")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly?>("DataDodania")
+                        .IsRequired()
+                        .HasColumnType("date");
 
                     b.Property<string>("Marka")
                         .IsRequired()
@@ -102,7 +104,7 @@ namespace komis_aut.Migrations
 
                     b.HasIndex("SprzedajacyId");
 
-                    b.ToTable("Pojazdy");
+                    b.ToTable("pojazdy", (string)null);
                 });
 
             modelBuilder.Entity("komis_aut.Modele.Transakcja", b =>
@@ -116,8 +118,9 @@ namespace komis_aut.Migrations
                     b.Property<decimal>("CenaKoncowa")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime>("DataTransakcji")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly?>("DataTransakcji")
+                        .IsRequired()
+                        .HasColumnType("date");
 
                     b.Property<int>("KupujacyId")
                         .HasColumnType("integer");
@@ -145,7 +148,7 @@ namespace komis_aut.Migrations
 
                     b.HasIndex("UzytkownikId");
 
-                    b.ToTable("Transakcje");
+                    b.ToTable("transakcje", (string)null);
                 });
 
             modelBuilder.Entity("komis_aut.Modele.Uzytkownik", b =>
@@ -156,8 +159,9 @@ namespace komis_aut.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UzytkownikId"));
 
-                    b.Property<DateTime>("DataRejestracji")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly?>("DataRejestracji")
+                        .IsRequired()
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -185,7 +189,7 @@ namespace komis_aut.Migrations
 
                     b.HasKey("UzytkownikId");
 
-                    b.ToTable("Uzytkownicy");
+                    b.ToTable("uzytkownicy", (string)null);
                 });
 
             modelBuilder.Entity("komis_aut.Modele.Zdjecie", b =>
@@ -207,7 +211,7 @@ namespace komis_aut.Migrations
 
                     b.HasIndex("PojazdId");
 
-                    b.ToTable("Zdjecia");
+                    b.ToTable("zdjecia", (string)null);
                 });
 
             modelBuilder.Entity("komis_aut.Modele.Oferta", b =>

@@ -26,7 +26,7 @@ namespace komis_aut.Modele
         [Required]
         public string Opis { get; set; }
         [Required]
-        public DateTime DataDodania { get; set; }
+        public DateOnly? DataDodania { get; set; }
         [ForeignKey("SprzedajacyId")]
 
         public Uzytkownik Sprzedajacy { get; set; }

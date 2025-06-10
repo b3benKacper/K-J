@@ -12,6 +12,7 @@
         public string Password { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
+        public string Telefon { get;  set; }
     }
 
 }

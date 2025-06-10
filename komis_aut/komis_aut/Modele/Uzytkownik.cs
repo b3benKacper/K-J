@@ -20,7 +20,7 @@ namespace komis_aut.Modele
         [Required]
         public string Rola { get; set; }
         [Required]
-        public DateTime DataRejestracji { get; set; }
+        public DateOnly? DataRejestracji { get; set; }
 
         public ICollection<Oferta> Oferty { get; set; }
         public ICollection<Transakcja> Transakcje { get; set; }

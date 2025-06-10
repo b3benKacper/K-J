@@ -476,3 +476,12 @@ C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\obj\Debug\net8.0\refint\komis_a
 C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\obj\Debug\net8.0\komis_aut.pdb
 C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\obj\Debug\net8.0\komis_aut.genruntimeconfig.cache
 C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\obj\Debug\net8.0\ref\komis_aut.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\jakub\Documents\K-J\komis_aut\komis_aut\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

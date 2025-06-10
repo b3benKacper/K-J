@@ -35,8 +35,12 @@ namespace komis_aut.Controllers
                 Email = dto.Email,
                 Haslo = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 Imie = dto.Imie,
-                Nazwisko = dto.Nazwisko
+                Nazwisko = dto.Nazwisko,
+                Telefon = dto.Telefon,
+                Rola = "uzytkownik", // domyślna rola
+                DataRejestracji = DateOnly.FromDateTime(DateTime.Now)
             };
+
 
             _context.Uzytkownicy.Add(user);
             await _context.SaveChangesAsync();

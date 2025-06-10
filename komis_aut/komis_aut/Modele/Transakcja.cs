@@ -17,7 +17,7 @@ namespace komis_aut.Modele
         [Required]
         public decimal CenaKoncowa { get; set; }
         [Required]
-        public DateTime DataTransakcji { get; set; }
+        public DateOnly? DataTransakcji { get; set; }
         [Required]
         public string StatusPlatnosci { get; set; }
         [ForeignKey("PojazdId")]
