@@ -1,26 +1,31 @@
-# Visual Studio pliki użytkownika
+## Visual Studio
 .vs/
 *.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Build output
+## Build
 bin/
 obj/
-
-# Pliki runtime'u ASP.NET static web assets
-**/staticwebassets*
-
-# Pliki tymczasowe NuGet
-*.nuget.*
-project.assets.json
-project.nuget.cache
-
-# Debug info
-*.pdb
 *.dll
 *.exe
+*.pdb
 *.cache
-*.vsidx
 
-# inne niepotrzebne
-*.user
-*.log
+## ASP.NET Static Web Assets
+**/staticwebassets*
+*.json
+
+## NuGet
+*.nupkg
+project.lock.json
+project.assets.json
+project.nuget.cache
+*.nuget.*
+
+## Rider / JetBrains
+.idea/
+
+## Index plików
+*.vsidx
