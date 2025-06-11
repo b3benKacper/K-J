@@ -5,6 +5,7 @@ import DodajOferte from "./components/DodajOferte";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
+import DodajPojazd from "./components/DodajPojazd";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(!!localStorage.getItem("token"));
@@ -45,6 +46,7 @@ function Home({ setAuthenticated }) {
       <h1>🏁 Oferty z komisu</h1>
       <OfertaList />
       <DodajOferte />
+      <DodajPojazd />
       <button className="btn btn-danger mt-3" onClick={handleLogout}>
         Wyloguj
       </button>

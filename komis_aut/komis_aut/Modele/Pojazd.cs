@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace komis_aut.Modele
 {
@@ -28,10 +29,10 @@ namespace komis_aut.Modele
         [Required]
         public DateOnly? DataDodania { get; set; }
         [ForeignKey("SprzedajacyId")]
-
+        [JsonIgnore]
         public Uzytkownik Sprzedajacy { get; set; }
-        public ICollection<Zdjecie> Zdjecia { get; set; }
-        public ICollection<Oferta> Oferty { get; set; }
+        public ICollection<Zdjecie> Zdjecia { get; set; } = new List<Zdjecie>();
+        public ICollection<Oferta> Oferty { get; set; } = new List<Oferta>();
     }
 
 }
