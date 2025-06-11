@@ -1,0 +1,26 @@
+# Visual Studio pliki użytkownika
+.vs/
+*.suo
+
+# Build output
+bin/
+obj/
+
+# Pliki runtime'u ASP.NET static web assets
+**/staticwebassets*
+
+# Pliki tymczasowe NuGet
+*.nuget.*
+project.assets.json
+project.nuget.cache
+
+# Debug info
+*.pdb
+*.dll
+*.exe
+*.cache
+*.vsidx
+
+# inne niepotrzebne
+*.user
+*.log
