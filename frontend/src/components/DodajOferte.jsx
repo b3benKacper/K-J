@@ -3,6 +3,7 @@ import axios from "../axios";
 
 function DodajOferte() {
   const [pojazdy, setPojazdy] = useState([]);
+  const [oferty, setOferty] = useState([]);
   const [form, setForm] = useState({
     PojazdId: "",
     Kwota: "",
@@ -10,20 +11,26 @@ function DodajOferte() {
   });
 
   useEffect(() => {
+    // Pobierz wszystkie pojazdy
     axios.get("/api/pojazd")
-      .then(res => {
-        // Ukryj pojazdy, których opis zawiera "sprzedany" lub "zakupione"
-        const aktywne = res.data.filter(
-          p =>
-            !p.opis?.toLowerCase().includes("sprzedany") &&
-            !p.opis?.toLowerCase().includes("zakupione")
-        );
-        setPojazdy(aktywne);
-      })
+      .then(res => setPojazdy(res.data))
       .catch(() => setPojazdy([]));
+    // Pobierz wszystkie oferty
+    axios.get("/api/oferta")
+      .then(res => setOferty(res.data))
+      .catch(() => setOferty([]));
   }, []);
 
-  // Dekodowanie userId z JWT
+  // IDs pojazdów, które już mają ofertę ze statusem "aktywny"
+  const zajetePojazdyIds = oferty
+    .filter(o => o.status === "aktywny" || o.status === "sprzedany")
+    .map(o => o.pojazdId);
+
+  // Pokazuj tylko pojazdy, które nie są już w aktywnej ofercie
+  const dostepnePojazdy = pojazdy.filter(
+    p => !zajetePojazdyIds.includes(p.pojazdId)
+  );
+
   function getUserIdFromJWT() {
     const token = localStorage.getItem("token");
     if (!token) return null;
@@ -85,7 +92,7 @@ function DodajOferte() {
           required
         >
           <option value="">-- wybierz pojazd --</option>
-          {pojazdy.map(p => (
+          {dostepnePojazdy.map(p => (
             <option key={p.pojazdId} value={p.pojazdId}>
               {p.marka} {p.model} ({p.rokProdukcji})
             </option>
@@ -100,17 +107,6 @@ function DodajOferte() {
           className="form-control"
           placeholder="Podaj kwotę"
           value={form.Kwota}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="mb-2">
-        <label>Status</label>
-        <input
-          name="Status"
-          className="form-control"
-          placeholder="Status"
-          value={form.Status}
           onChange={handleChange}
           required
         />

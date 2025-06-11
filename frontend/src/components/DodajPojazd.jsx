@@ -131,23 +131,34 @@ function DodajPojazd() {
       </div>
       <div className="mb-2">
         <label>Rodzaj paliwa</label>
-        <input
+        <select
           name="RodzajPaliwa"
           className="form-control"
           value={form.RodzajPaliwa}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">-- wybierz Rodzaj paliwa --</option>
+            <option >LPG</option>
+            <option >Benzyna</option>
+            <option >Benzyna + LPG</option>
+            <option >Diesel</option>
+        </select>
       </div>
       <div className="mb-2">
         <label>Skrzynia biegów</label>
-        <input
+        <select
           name="SkrzyniaBiegow"
           className="form-control"
           value={form.SkrzyniaBiegow}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">-- wybierz Skrzynie biegów --</option>
+            <option >Manualna</option>
+            <option >Pół automatyczna</option>
+            <option >Automatyczna</option>
+        </select>
       </div>
       <div className="mb-2">
         <label>Opis</label>

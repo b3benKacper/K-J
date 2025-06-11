@@ -28,6 +28,7 @@ namespace komis_aut.Controller
         [HttpPost]
         public async Task<ActionResult<Oferta>> Post(Oferta oferta)
         {
+            oferta.Status = "aktywny";
             _context.Oferty.Add(oferta);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(Get), new { id = oferta.OfertaId }, oferta);
