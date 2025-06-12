@@ -64,7 +64,8 @@ namespace komis_aut.Controllers
             var claims = new[]
             {
             new Claim(ClaimTypes.NameIdentifier, user.UzytkownikId.ToString()),
-            new Claim(ClaimTypes.Name, user.Email)
+            new Claim(ClaimTypes.Name, user.Email),
+            new Claim(ClaimTypes.Role, user.Rola)
         };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

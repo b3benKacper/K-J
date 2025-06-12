@@ -23,17 +23,26 @@ namespace komis_aut.Controller
         [HttpGet("{id}")]
         public async Task<ActionResult<Pojazd>> Get(int id)
         {
-            var pojazd = await _context.Pojazdy.Include(p => p.Zdjecia).FirstOrDefaultAsync(p => p.PojazdId == id);
+            var pojazd = await _context.Pojazdy.Include(p => p.Zdjecia)
+                .FirstOrDefaultAsync(p => p.PojazdId == id);
             if (pojazd == null) return NotFound();
             return pojazd;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Pojazd>> Post(PojazdInputDto dto)
         {
+            int? sprzedajacyId = dto.SprzedajacyId;
+
+            // Jeśli nie admin, bierz userId z JWT:
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var rola = User.FindFirst(ClaimTypes.Role)?.Value;
+            if (rola != "ADMIN") sprzedajacyId = userId;
+
             var pojazd = new Pojazd
             {
-                SprzedajacyId = dto.SprzedajacyId,
+                SprzedajacyId = sprzedajacyId ?? 0,
                 Marka = dto.Marka,
                 Model = dto.Model,
                 RokProdukcji = dto.RokProdukcji,
@@ -50,13 +59,20 @@ namespace komis_aut.Controller
             return CreatedAtAction(nameof(Get), new { id = pojazd.PojazdId }, pojazd);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, PojazdInputDto dto)
         {
             var pojazd = await _context.Pojazdy.FindAsync(id);
             if (pojazd == null) return NotFound();
 
-            pojazd.SprzedajacyId = dto.SprzedajacyId;
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var rola = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            // Admin może edytować wszystko, inni tylko swoje
+            if (rola != "ADMIN" && pojazd.SprzedajacyId != userId)
+                return Forbid();
+
             pojazd.Marka = dto.Marka;
             pojazd.Model = dto.Model;
             pojazd.RokProdukcji = dto.RokProdukcji;
@@ -71,11 +87,20 @@ namespace komis_aut.Controller
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var pojazd = await _context.Pojazdy.FindAsync(id);
             if (pojazd == null) return NotFound();
+
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var rola = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            // Admin może usuwać wszystko, inni tylko swoje
+            if (rola != "ADMIN" && pojazd.SprzedajacyId != userId)
+                return Forbid();
+
             _context.Pojazdy.Remove(pojazd);
             await _context.SaveChangesAsync();
             return NoContent();
@@ -90,13 +115,11 @@ namespace komis_aut.Controller
                 return Unauthorized();
             int userId = int.Parse(userIdClaim);
 
-            // Pobierz pojazdy, których jesteś sprzedawcą
             var sprzedajace = await _context.Pojazdy
                 .Where(p => p.SprzedajacyId == userId)
                 .Include(p => p.Zdjecia)
                 .ToListAsync();
 
-            // Pobierz ID pojazdów, które kupiłeś (jesteś kupującym w transakcji)
             var kupioneIds = await _context.Transakcje
                 .Where(t => t.KupujacyId == userId)
                 .Select(t => t.PojazdId)
@@ -107,7 +130,6 @@ namespace komis_aut.Controller
                 .Include(p => p.Zdjecia)
                 .ToListAsync();
 
-            // Połącz i usuń duplikaty
             var moje = sprzedajace.Concat(kupione)
                 .GroupBy(p => p.PojazdId)
                 .Select(g => g.First())

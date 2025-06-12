@@ -1,20 +1,20 @@
 using komis_aut.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Dodaj kontrolery API + Razor Pages
-builder.Services.AddControllers();
-builder.Services.AddRazorPages();
-
 // Dodaj bazę danych
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Konfiguracja JWT
+// Dodaj kontrolery API + Razor Pages
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+// JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -31,12 +31,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-//  CORS 
+// CORS – dla frontendu (np. React)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // frontend
+        policy.WithOrigins("http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -44,7 +44,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//  Middleware pipeline
+// Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -53,14 +53,34 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
+app.UseCors("AllowReact");
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.UseCors("AllowReact");     //  najpierw CORS
-app.UseAuthentication();       //  potem JWT auth
-app.UseAuthorization();        //  a potem autoryzacja
+app.MapControllers();
+app.MapRazorPages();
 
-app.MapControllers();          //  kontrolery API
-app.MapRazorPages();           // Razor Pages 
+// ------- SEEDING ADMINA -------//
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    if (!context.Uzytkownicy.Any(u => u.Rola == "ADMIN"))
+    {
+        var admin = new komis_aut.Modele.Uzytkownik
+        {
+            Imie = "Admin",
+            Nazwisko = "Admin",
+            Email = "admin@admin.pl",
+            Haslo = BCrypt.Net.BCrypt.HashPassword("admin1234"),
+            Telefon = "123456789",
+            Rola = "ADMIN",
+            DataRejestracji = DateOnly.FromDateTime(DateTime.Now)
+        };
+        context.Uzytkownicy.Add(admin);
+        context.SaveChanges();
+    }
+}
+// ------- KONIEC SEEDINGU -------//
 
 app.Run();
