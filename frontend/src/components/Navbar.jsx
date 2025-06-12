@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Navbar({ authenticated, setAuthenticated }) {
+function Navbar({ authenticated, setAuthenticated, rola }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setAuthenticated(false);
-    window.location.reload(); // Odśwież aplikację po wylogowaniu
+    window.location.reload();
   };
 
   return (
@@ -30,6 +30,16 @@ function Navbar({ authenticated, setAuthenticated }) {
                 <li className="nav-item">
                   <Link className="nav-link" to="/moje-pojazdy">Moje pojazdy</Link>
                 </li>
+                {rola === "ADMIN" && (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/wszystkie-pojazdy">Wszystkie pojazdy</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/admin">Panel administratora</Link>
+                    </li>
+                  </>
+                )}
               </>
             )}
           </ul>

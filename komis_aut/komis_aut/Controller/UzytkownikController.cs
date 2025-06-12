@@ -2,6 +2,7 @@
 using komis_aut.Modele;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace komis_aut.Controller
 {
@@ -13,10 +14,13 @@ namespace komis_aut.Controller
 
         public UzytkownikController(ApplicationDbContext context) => _context = context;
 
+        // Tylko dla admina: pobierz wszystkich użytkowników
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Uzytkownik>>> GetAll() =>
-            await _context.Uzytkownicy.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Uzytkownik>>> GetAll()
+            => await _context.Uzytkownicy.ToListAsync();
 
+        [Authorize(Roles = "ADMIN")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Uzytkownik>> Get(int id)
         {
@@ -25,23 +29,29 @@ namespace komis_aut.Controller
             return user;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Uzytkownik>> Post(Uzytkownik user)
-        {
-            _context.Uzytkownicy.Add(user);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new { id = user.UzytkownikId }, user);
-        }
-
+        // Edytuj użytkownika (mail i rola)
+        [Authorize(Roles = "ADMIN")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Uzytkownik user)
         {
-            if (id != user.UzytkownikId) return BadRequest();
-            _context.Entry(user).State = EntityState.Modified;
+            if (id != user.UzytkownikId)
+                return BadRequest();
+
+            var istnieje = await _context.Uzytkownicy.AnyAsync(u => u.UzytkownikId == id);
+            if (!istnieje) return NotFound();
+
+            var userDb = await _context.Uzytkownicy.FindAsync(id);
+            if (userDb == null) return NotFound();
+
+            userDb.Email = user.Email;
+            userDb.Rola = user.Rola;
+
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
+        // Usuń użytkownika
+        [Authorize(Roles = "ADMIN")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -52,5 +62,4 @@ namespace komis_aut.Controller
             return NoContent();
         }
     }
-
 }
