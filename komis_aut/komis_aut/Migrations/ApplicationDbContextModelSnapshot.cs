@@ -249,7 +249,7 @@ namespace komis_aut.Migrations
                     b.HasOne("komis_aut.Modele.Uzytkownik", "Kupujacy")
                         .WithMany()
                         .HasForeignKey("KupujacyId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("komis_aut.Modele.Pojazd", "Pojazd")
@@ -261,7 +261,7 @@ namespace komis_aut.Migrations
                     b.HasOne("komis_aut.Modele.Uzytkownik", "Sprzedajacy")
                         .WithMany()
                         .HasForeignKey("SprzedajacyId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("komis_aut.Modele.Uzytkownik", null)

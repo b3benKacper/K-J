@@ -35,7 +35,7 @@ function KupPojazdButton({ pojazd, oferta }) {
       alert("Gratulacje! Zakupiłeś nowy samochód.");
       window.location.reload(); // opcjonalnie odśwież listę
     } catch (err) {
-      // Jeśli status 500, także pokaż gratulacje (bo w bazie się zapisuje)
+      
       if (err.response && err.response.status === 500) {
         alert("Gratulacje! Zakupiłeś nowy samochód.");
         window.location.reload();
