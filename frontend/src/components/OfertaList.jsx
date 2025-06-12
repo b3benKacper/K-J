@@ -69,13 +69,13 @@ function OfertaList() {
     return true;
   });
 
-  // NAJPIERW oferty aktywne, potem reszta
+  // Najpierw aktywne
   const sortStatus = status => status === "aktywny" ? 0 : 1;
   const widoczneOfertyPosortowane = [...widoczneOferty].sort((a, b) => {
     const priA = sortStatus(a.status);
     const priB = sortStatus(b.status);
     if (priA !== priB) return priA - priB;
-    // Dalsze sortowanie wg wybranej kolumny
+    // Następnie sortowanie wg kolumny
     if (sortConfig.key != null) {
       let aValue, bValue;
       if (sortConfig.key === "marka-model") {
@@ -98,7 +98,6 @@ function OfertaList() {
       }
       if (aValue == null) aValue = "";
       if (bValue == null) bValue = "";
-
       if (typeof aValue === "number" && typeof bValue === "number") {
         return sortConfig.direction === "asc" ? aValue - bValue : bValue - aValue;
       }
@@ -127,7 +126,7 @@ function OfertaList() {
 
   const handleFilt = e => setFilters({ ...filters, [e.target.name]: e.target.value });
 
-  // Edycja/usuwanie oferty:
+  // Edit/Usuń oferty:
   const handleEdit = (oferta) => {
     setEditOferta(oferta);
     setEditForm({ ...oferta });
