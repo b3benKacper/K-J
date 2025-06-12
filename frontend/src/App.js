@@ -31,6 +31,10 @@ function App() {
 
         {/* DLA ZALOGOWANYCH: */}
         <Route
+          path="/moje-pojazdy"
+          element={authenticated ? <MojePojazdy /> : <Navigate to="/login" />}
+        />
+        <Route
           path="/dodaj-oferte"
           element={authenticated ? <DodajOferte /> : <Navigate to="/login" />}
         />
@@ -38,10 +42,7 @@ function App() {
           path="/dodaj-pojazd"
           element={authenticated ? <DodajPojazd /> : <Navigate to="/login" />}
         />
-        <Route
-          path="/moje-pojazdy"
-          element={authenticated ? <MojePojazdy /> : <Navigate to="/login" />}
-        />
+        
 
         {/* Domyślne przekierowanie */}
         <Route path="*" element={<Navigate to="/" />} />

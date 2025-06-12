@@ -13,6 +13,10 @@ function DodajPojazd() {
     Opis: ""
   });
 
+  // Lista opcji do selecta
+  const paliwa = ["LPG", "Benzyna", "Benzyna + LPG", "Diesel", "CNG", "Hybryda", "Elektryczny", "Inne"];
+  const skrzynie = ["Manualna", "Pół automatyczna", "Automatyczna", "Inna"];
+
   function getUserIdFromJWT() {
     const token = localStorage.getItem("token");
     if (!token) return null;
@@ -138,11 +142,10 @@ function DodajPojazd() {
           onChange={handleChange}
           required
         >
-          <option value="">-- wybierz Rodzaj paliwa --</option>
-            <option >LPG</option>
-            <option >Benzyna</option>
-            <option >Benzyna + LPG</option>
-            <option >Diesel</option>
+          <option value="">-- wybierz rodzaj paliwa --</option>
+          {paliwa.map(opt => (
+            <option key={opt} value={opt}>{opt}</option>
+          ))}
         </select>
       </div>
       <div className="mb-2">
@@ -154,10 +157,10 @@ function DodajPojazd() {
           onChange={handleChange}
           required
         >
-          <option value="">-- wybierz Skrzynie biegów --</option>
-            <option >Manualna</option>
-            <option >Pół automatyczna</option>
-            <option >Automatyczna</option>
+          <option value="">-- wybierz skrzynię biegów --</option>
+          {skrzynie.map(opt => (
+            <option key={opt} value={opt}>{opt}</option>
+          ))}
         </select>
       </div>
       <div className="mb-2">

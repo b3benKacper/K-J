@@ -22,13 +22,13 @@ function Navbar({ authenticated, setAuthenticated }) {
             {authenticated && (
               <>
                 <li className="nav-item">
+                  <Link className="nav-link" to="/moje-pojazdy">Moje pojazdy</Link>
+                </li>
+                <li className="nav-item">
                   <Link className="nav-link" to="/dodaj-oferte">Dodaj ofertę</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/dodaj-pojazd">Dodaj pojazd</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/moje-pojazdy">Moje pojazdy</Link>
                 </li>
               </>
             )}

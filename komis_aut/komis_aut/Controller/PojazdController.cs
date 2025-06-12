@@ -85,18 +85,35 @@ namespace komis_aut.Controller
         [HttpGet("moje")]
         public async Task<ActionResult<IEnumerable<Pojazd>>> GetMojePojazdy()
         {
-            // Pobierz userId z tokena JWT
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userIdClaim == null)
                 return Unauthorized();
             int userId = int.Parse(userIdClaim);
 
-            var mojePojazdy = await _context.Pojazdy
+            // Pobierz pojazdy, których jesteś sprzedawcą
+            var sprzedajace = await _context.Pojazdy
                 .Where(p => p.SprzedajacyId == userId)
                 .Include(p => p.Zdjecia)
                 .ToListAsync();
 
-            return mojePojazdy;
+            // Pobierz ID pojazdów, które kupiłeś (jesteś kupującym w transakcji)
+            var kupioneIds = await _context.Transakcje
+                .Where(t => t.KupujacyId == userId)
+                .Select(t => t.PojazdId)
+                .ToListAsync();
+
+            var kupione = await _context.Pojazdy
+                .Where(p => kupioneIds.Contains(p.PojazdId))
+                .Include(p => p.Zdjecia)
+                .ToListAsync();
+
+            // Połącz i usuń duplikaty
+            var moje = sprzedajace.Concat(kupione)
+                .GroupBy(p => p.PojazdId)
+                .Select(g => g.First())
+                .ToList();
+
+            return moje;
         }
     }
 }

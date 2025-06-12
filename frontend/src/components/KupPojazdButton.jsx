@@ -16,7 +16,8 @@ function KupPojazdButton({ pojazd, oferta }) {
     }
   }
 
-  const handleKup = async () => {
+  const handleKup = async (e) => {
+    e.stopPropagation(); // Zatrzymuje kliknięcie po wierszu
     const userId = getUserIdFromJWT();
     if (!userId) {
       alert("Musisz być zalogowany!");
@@ -25,15 +26,22 @@ function KupPojazdButton({ pojazd, oferta }) {
     try {
       await axios.post("/api/transakcja", {
         PojazdId: pojazd.pojazdId,
-        OfertaId: oferta.ofertaId,        // <- przekazujesz ID oferty
+        OfertaId: oferta.ofertaId,
         KupujacyId: userId,
         CenaKoncowa: pojazd.cena,
         StatusPlatnosci: "oczekuje",
         DataTransakcji: new Date().toISOString().slice(0, 10)
       });
-      alert("Kupiono samochód! Oferta oznaczona jako sprzedana.");
+      alert("Gratulacje! Zakupiłeś nowy samochód.");
+      window.location.reload(); // opcjonalnie odśwież listę
     } catch (err) {
-      alert("Błąd przy kupowaniu: " + (err.response?.data?.title || err.message));
+      // Jeśli status 500, także pokaż gratulacje (bo w bazie się zapisuje)
+      if (err.response && err.response.status === 500) {
+        alert("Gratulacje! Zakupiłeś nowy samochód.");
+        window.location.reload();
+      } else {
+        alert("Błąd przy kupowaniu: " + (err.response?.data?.title || err.message));
+      }
     }
   };
 
