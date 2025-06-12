@@ -32,13 +32,10 @@ namespace komis_aut.Controller
         // Edytuj użytkownika (mail i rola)
         [Authorize(Roles = "ADMIN")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Uzytkownik user)
+        public async Task<IActionResult> Put(int id, UzytkownikUpdateDto user)
         {
             if (id != user.UzytkownikId)
                 return BadRequest();
-
-            var istnieje = await _context.Uzytkownicy.AnyAsync(u => u.UzytkownikId == id);
-            if (!istnieje) return NotFound();
 
             var userDb = await _context.Uzytkownicy.FindAsync(id);
             if (userDb == null) return NotFound();
@@ -55,11 +52,18 @@ namespace komis_aut.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var user = await _context.Uzytkownicy.FindAsync(id);
-            if (user == null) return NotFound();
-            _context.Uzytkownicy.Remove(user);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            try
+            {
+                var user = await _context.Uzytkownicy.FindAsync(id);
+                if (user == null) return NotFound();
+                _context.Uzytkownicy.Remove(user);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Błąd serwera: {ex.Message}");
+            }
         }
     }
 }

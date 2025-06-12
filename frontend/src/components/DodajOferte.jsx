@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../axios";
 
 function DodajOferte() {
@@ -11,6 +11,20 @@ function DodajOferte() {
     Status: "aktywny"
   });
 
+  const fetchData = async () => {
+    try {
+      const [pojazdyRes, ofertyRes] = await Promise.all([
+        axios.get("/api/pojazd"),
+        axios.get("/api/oferta")
+      ]);
+      setPojazdy(pojazdyRes.data);
+      setOferty(ofertyRes.data);
+    } catch (err) {
+      setPojazdy([]);
+      setOferty([]);
+    }
+  };
+
   useEffect(() => {
     // Pobierz userId z JWT
     const token = localStorage.getItem("token");
@@ -20,31 +34,26 @@ function DodajOferte() {
         setUserId(
           parseInt(
             payload["nameid"] ||
-              payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
+            payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
           )
         );
       } catch (e) {}
     }
-    axios.get("/api/pojazd")
-      .then(res => setPojazdy(res.data))
-      .catch(() => setPojazdy([]));
-    axios.get("/api/oferta")
-      .then(res => setOferty(res.data))
-      .catch(() => setOferty([]));
+
+    fetchData();
   }, []);
 
-  // IDs pojazdów z aktywną ofertą lub już "sprzedany"
   const zajetePojazdyIds = oferty
     .filter(o => o.status === "aktywny" || o.status === "sprzedany")
     .map(o => o.pojazdId);
 
-  // Tylko moje pojazdy, do których nie mam już aktywnej/sprzedanej oferty
   const mojeDostepnePojazdy = pojazdy
     .filter(
       p => userId && p.sprzedajacyId === userId && !zajetePojazdyIds.includes(p.pojazdId)
     );
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = e =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -52,29 +61,33 @@ function DodajOferte() {
       alert("Brak zalogowanego użytkownika.");
       return;
     }
+
     const DataZalozenia = new Date().toISOString().slice(0, 10);
 
     try {
-      await axios.post(
-        "/api/oferta",
-        {
-          PojazdId: parseInt(form.PojazdId),
-          KupujacyId: userId,
-          Kwota: parseFloat(form.Kwota),
-          DataZalozenia: DataZalozenia,
-          Status: form.Status
-        }
-      );
+      await axios.post("/api/oferta", {
+        PojazdId: parseInt(form.PojazdId),
+        KupujacyId: userId,
+        Kwota: parseFloat(form.Kwota),
+        DataZalozenia,
+        Status: form.Status
+      });
       alert("Oferta dodana pomyślnie!");
       setForm({ PojazdId: "", Kwota: "", Status: "aktywny" });
+      window.location.reload();
+
+      // ⏬ ODSWIEŻ DANE PO DODANIU
+      await fetchData();
     } catch (err) {
-      alert(
-        "Błąd:\n" +
-          (err.response?.data?.title || "") +
-          "\n" +
-          JSON.stringify(err.response?.data?.errors || {}, null, 2)
-      );
+      let komunikat = "Błąd:\n";
+      if (err.response?.data?.title) komunikat += err.response.data.title + "\n";
+      if (err.response?.data?.errors && Object.keys(err.response.data.errors).length) {
+        komunikat += JSON.stringify(err.response.data.errors, null, 2);
+      }
+      if (komunikat === "Błąd:\n") komunikat += (err.message || "Nieznany błąd");
+      alert(komunikat);
     }
+    window.location.reload();
   };
 
   return (
@@ -109,7 +122,9 @@ function DodajOferte() {
           required
         />
       </div>
-      <button className="btn btn-primary" type="submit">Dodaj ofertę</button>
+      <button className="btn btn-primary" type="submit">
+        Dodaj ofertę
+      </button>
     </form>
   );
 }

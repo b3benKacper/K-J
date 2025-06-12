@@ -23,7 +23,6 @@ function OfertaList() {
   const [editForm, setEditForm] = useState({});
 
   useEffect(() => {
-    // pobierz userId i rolę (dla Twojego JWT: role = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -31,15 +30,14 @@ function OfertaList() {
         setUserId(
           parseInt(
             payload["nameid"] ||
-            payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
+              payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
           )
         );
-        // SZUKAJ ROLI PO TYM KLUCZU, BO TAK MASZ W JWT
         setRola(
           payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] ||
-          payload["role"] ||
-          payload["rola"] ||
-          ""
+            payload["role"] ||
+            payload["rola"] ||
+            ""
         );
       } catch (e) {}
     }
@@ -47,22 +45,20 @@ function OfertaList() {
     axios.get("/api/pojazd").then(res => setPojazdy(res.data)).catch(() => setPojazdy([]));
   }, []);
 
-  useEffect(() => {
-    console.log("userId:", userId, "rola:", rola);
-  }, [userId, rola]);
-
   const getPojazd = id => pojazdy.find(p => p.pojazdId === id);
 
-  // Marki, modele, paliwa, skrzynie
+  // Filtrowanie - Zbiory wartości do selectów
   const marki = Array.from(new Set(pojazdy.map(p => p.marka))).sort();
   const modele = Array.from(
     new Set(
-      pojazdy.filter(p => !filters.marka || p.marka === filters.marka).map(p => p.model)
+      pojazdy.filter(p => !filters.marka || p.marka === filters.marka)
+             .map(p => p.model)
     )
   ).sort();
   const rodzajePaliwa = Array.from(new Set(pojazdy.map(p => p.rodzajPaliwa).filter(Boolean))).sort();
   const skrzynieBiegow = Array.from(new Set(pojazdy.map(p => p.skrzyniaBiegow).filter(Boolean))).sort();
 
+  // OFERTY PO FILTRZE
   let widoczneOferty = oferty.filter(oferta => {
     const p = getPojazd(oferta.pojazdId);
     if (filters.marka && p?.marka !== filters.marka) return false;
@@ -71,22 +67,23 @@ function OfertaList() {
     if (filters.paliwo && (!p || p.rodzajPaliwa !== filters.paliwo)) return false;
     if (filters.skrzynia && (!p || p.skrzyniaBiegow !== filters.skrzynia)) return false;
     if (
-      filters.sprzedany &&
-      (filters.sprzedany === "sprzedany"
-        ? oferta.status !== "sprzedany"
-        : oferta.status === "sprzedany")
+      filters.sprzedany === "sprzedany" && (!oferta.status || oferta.status !== "sprzedany")
+    )
+      return false;
+    if (
+      filters.sprzedany === "aktywny" && (!oferta.status || oferta.status !== "aktywny")
     )
       return false;
     return true;
   });
 
-  // Najpierw aktywne
+  // Sortowanie (jak było)
   const sortStatus = status => status === "aktywny" ? 0 : 1;
   const widoczneOfertyPosortowane = [...widoczneOferty].sort((a, b) => {
     const priA = sortStatus(a.status);
     const priB = sortStatus(b.status);
     if (priA !== priB) return priA - priB;
-    if (sortConfig.key != null) {
+    if (sortConfig.key !== null) {
       let aValue, bValue;
       if (sortConfig.key === "marka-model") {
         const pa = getPojazd(a.pojazdId) || {};
@@ -136,12 +133,12 @@ function OfertaList() {
 
   const handleFilt = e => setFilters({ ...filters, [e.target.name]: e.target.value });
 
-  const handleEdit = (oferta) => {
+  const handleEdit = oferta => {
     setEditOferta(oferta);
     setEditForm({ ...oferta });
   };
 
-  const handleDelete = async (ofertaId) => {
+  const handleDelete = async ofertaId => {
     if (window.confirm("Czy na pewno chcesz usunąć tę ofertę?")) {
       try {
         await axios.delete(`/api/oferta/${ofertaId}`);
@@ -172,7 +169,64 @@ function OfertaList() {
   return (
     <div className="mt-4">
       <h5>Lista ofert</h5>
-      {/* ...filtry jak wyżej... */}
+      {/* FILTRY */}
+      <div className="mb-3 row">
+        <div className="col-md-2">
+          <label className="form-label">Marka</label>
+          <select name="marka" className="form-select" value={filters.marka} onChange={handleFilt}>
+            <option value="">-- dowolna --</option>
+            {marki.map(m => (
+              <option key={m} value={m}>{m}</option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-2">
+          <label className="form-label">Model</label>
+          <select name="model" className="form-select" value={filters.model} onChange={handleFilt}>
+            <option value="">-- dowolny --</option>
+            {modele.map(m => (
+              <option key={m} value={m}>{m}</option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-2">
+          <label className="form-label">Rok</label>
+          <input
+            name="rok"
+            className="form-control"
+            placeholder="np. 2015"
+            value={filters.rok}
+            onChange={handleFilt}
+          />
+        </div>
+        <div className="col-md-2">
+          <label className="form-label">Paliwo</label>
+          <select name="paliwo" className="form-select" value={filters.paliwo} onChange={handleFilt}>
+            <option value="">-- dowolne --</option>
+            {rodzajePaliwa.map(p => (
+              <option key={p} value={p}>{p}</option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-2">
+          <label className="form-label">Skrzynia</label>
+          <select name="skrzynia" className="form-select" value={filters.skrzynia} onChange={handleFilt}>
+            <option value="">-- dowolna --</option>
+            {skrzynieBiegow.map(s => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+        </div>
+        <div className="col-md-2">
+          <label className="form-label">Status</label>
+          <select name="sprzedany" className="form-select" value={filters.sprzedany} onChange={handleFilt}>
+            <option value="">-- dowolny --</option>
+            <option value="aktywny">Aktywny</option>
+            <option value="sprzedany">Sprzedany</option>
+          </select>
+        </div>
+      </div>
+      {/* TABELA OFERT */}
       <div className="table-responsive">
         <table className="table table-bordered table-hover">
           <thead>
@@ -242,7 +296,7 @@ function OfertaList() {
                             Edytuj
                           </button>
                         </>
-                    )}
+                      )}
                   </td>
                 </tr>
               );
@@ -250,7 +304,7 @@ function OfertaList() {
           </tbody>
         </table>
       </div>
-{/* modale */}
+      {/* MODALE */}
       {showModal && currentCar && (
         <div
           className="modal fade show"
@@ -295,7 +349,6 @@ function OfertaList() {
           </div>
         </div>
       )}
-
       {editOferta && (
         <div className="modal fade show" style={{
           display: "block",

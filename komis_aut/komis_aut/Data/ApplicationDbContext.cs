@@ -26,17 +26,26 @@ namespace komis_aut.Data
             modelBuilder.Entity<Pojazd>().ToTable("pojazdy");
             modelBuilder.Entity<Transakcja>().ToTable("transakcje");
 
+            // ✅ Cascade delete: Użytkownik -> Oferty (Kupujacy)
+            modelBuilder.Entity<Oferta>()
+                .HasOne(o => o.Kupujacy)
+                .WithMany(u => u.Oferty)
+                .HasForeignKey(o => o.KupujacyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // ✅ Cascade delete: Użytkownik -> Transakcje jako Kupujacy
             modelBuilder.Entity<Transakcja>()
                 .HasOne(t => t.Kupujacy)
                 .WithMany()
                 .HasForeignKey(t => t.KupujacyId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
+            // ✅ Cascade delete: Użytkownik -> Transakcje jako Sprzedajacy
             modelBuilder.Entity<Transakcja>()
                 .HasOne(t => t.Sprzedajacy)
                 .WithMany()
                 .HasForeignKey(t => t.SprzedajacyId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
     }
