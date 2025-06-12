@@ -6,15 +6,15 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Dodaj kontrolery API + Razor Pages
+// Dodaj kontrolery API + Razor Pages
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
-// ✅ Dodaj bazę danych
+// Dodaj bazę danych
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ✅ Konfiguracja JWT
+// Konfiguracja JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -31,12 +31,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// ✅ CORS – dla np. Reacta
+//  CORS 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // <--- podaj tu swój frontend
+        policy.WithOrigins("http://localhost:3000") // frontend
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -44,7 +44,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// ✅ Middleware pipeline
+//  Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -56,11 +56,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseCors("AllowReact");     // ✅ najpierw CORS
-app.UseAuthentication();       // ✅ potem JWT auth
-app.UseAuthorization();        // ✅ a potem autoryzacja
+app.UseCors("AllowReact");     //  najpierw CORS
+app.UseAuthentication();       //  potem JWT auth
+app.UseAuthorization();        //  a potem autoryzacja
 
-app.MapControllers();          // ✅ kontrolery API
-app.MapRazorPages();           // Razor Pages (opcjonalnie)
+app.MapControllers();          //  kontrolery API
+app.MapRazorPages();           // Razor Pages 
 
 app.Run();
